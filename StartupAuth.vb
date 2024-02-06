@@ -1,12 +1,10 @@
 ﻿Imports System.Configuration
 Imports System.Net
 Imports System.Security.Claims
-Imports System.Threading.Tasks
 Imports System.Web
 Imports Microsoft.Owin
 Imports Microsoft.Owin.Extensions
 Imports Microsoft.Owin.Host.SystemWeb
-Imports Microsoft.Owin.Infrastructure
 Imports Microsoft.Owin.Security
 Imports Microsoft.Owin.Security.Cookies
 Imports Microsoft.Owin.Security.OpenIdConnect
