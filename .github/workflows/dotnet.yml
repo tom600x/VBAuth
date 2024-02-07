@@ -33,10 +33,7 @@ jobs:
     - name: nuget pack
       run: nuget pack vbauth.vbproj -OutputDirectory ${{env.NuGetDirectory}}
 
-   
-    - name: NuGet Push ${{secrets.NUGET_API_KEY}}
-      env:
-        NUGET_API_KEY: ${{secrets.NUGET_API_KEY}}
-      run: nuget push "${{env.NuGetDirectory}}/*.nupkg" -source "https://nuget.pkg.github.com/tom600x/index.json" -ApiKey $NUGET_API_KEY 
+    - name: NuGet Push ${{ secrets.NUGET_API_KEY }}
+      run: nuget push "${{env.NuGetDirectory}}/*.nupkg" -source "https://nuget.pkg.github.com/tom600x/index.json" -ApiKey  ${{ secrets.NUGET_API_KEY }} 
 
       
