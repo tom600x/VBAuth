@@ -30,7 +30,7 @@ jobs:
       run: msbuild vbauth.sln /p:DeployOnBuild=true /p:WebPublishMethod=Package /p:PackageAsSingleFile=true /p:SkipInvalidConfigurations=true 
       
     - name: dotnet pack
-      run: nuget pack vbauth.vbproj
+      run: nuget pack vbauth.vbproj -OutputDirectory ${{env.NuGetDirectory}}
 
     - name: Upload GitHub Pages artifact
       uses: actions/upload-pages-artifact@v3.0.0
@@ -38,11 +38,11 @@ jobs:
         name: nuget
         if-no-files-found: error
         retention-days: 7
-        path: /*.nupkg
+        path: ${{env.NuGetDirectory}}/*.nupkg
      
     - name: NuGet Push
       env:
         NUGET_API_KEY: ${{ secrets.NUGET_API_KEY }}
-      run: nuget push "${{ env.NuGetDirectory }}/*.nupkg" --api-key $NUGET_API_KEY --source https://nuget.pkg.github.com/tom600x/index.json
+      run: nuget push "${{env.NuGetDirectory}}/*.nupkg" --api-key $NUGET_API_KEY --source https://nuget.pkg.github.com/tom600x/index.json
 
       
