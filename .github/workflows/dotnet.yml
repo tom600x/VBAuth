@@ -27,7 +27,7 @@ jobs:
       run: nuget restore vbauth.sln
  
     - name: Build 
-      run: msbuild vbauth.sln /p:DeployOnBuild=true /p:WebPublishMethod=Package /p:PackageAsSingleFile=true /p:SkipInvalidConfigurations=true /p:PackageLocation="$(build.artifactstagingdirectory)\\"
+      run: msbuild vbauth.sln /p:DeployOnBuild=true /p:WebPublishMethod=Package /p:PackageAsSingleFile=true /p:SkipInvalidConfigurations=true 
       
     - name: dotnet pack
       run: nuget pack vbauth.vbproj
