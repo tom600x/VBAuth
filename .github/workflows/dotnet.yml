@@ -34,7 +34,7 @@ jobs:
       run: nuget pack vbauth.vbproj -OutputDirectory ${{env.NuGetDirectory}}
 
     - name: nuget update sources
-      run: nuget sources update -Name MyFeed -Source "https://nuget.pkg.github.com/tom600x/index.json" -UserName tom600x -Password  ${{ secrets.NUGET_API_KEY }} 
+      run: nuget sources add -Name "MyFeed" -Source "https://nuget.pkg.github.com/tom600x/index.json" -UserName tom600x -Password  ${{ secrets.NUGET_API_KEY }} 
 
     - name: NuGet Push ${{ secrets.NUGET_API_KEY }}
       run: nuget push "${{env.NuGetDirectory}}/*.nupkg" -source "https://nuget.pkg.github.com/tom600x/index.json" -ApiKey  ${{ secrets.NUGET_API_KEY }} 
