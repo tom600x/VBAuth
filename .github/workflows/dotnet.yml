@@ -38,5 +38,11 @@ jobs:
         name: nuget
         if-no-files-found: error
         retention-days: 7
-        path: ${{ env.NuGetDirectory }}/*.nupkg
+        path: /*.nupkg
      
+    - name: NuGet Push
+      env:
+        NUGET_API_KEY: ${{ secrets.NUGET_API_KEY }}
+      run: nuget push "${{ env.NuGetDirectory }}/*.nupkg" --api-key $NUGET_API_KEY --source https://nuget.pkg.github.com/tom600x/index.json
+
+      
